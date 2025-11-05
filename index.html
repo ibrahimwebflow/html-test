@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Mastery Challenge - 40 Questions</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .instructions {
+            background-color: #e8f4fc;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+            border-left: 4px solid #3498db;
+        }
+        .question {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .question-number {
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .question-text {
+            margin-bottom: 15px;
+        }
+        .code-block {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 15px 0;
+            white-space: pre-wrap;
+        }
+        .options {
+            margin: 15px 0;
+        }
+        .option {
+            margin: 8px 0;
+            padding: 10px;
+            background-color: #edf2f7;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .option:hover {
+            background-color: #e2e8f0;
+        }
+        .option.correct {
+            background-color: #c6f6d5;
+            border-left: 4px solid #38a169;
+        }
+        .option.incorrect {
+            background-color: #fed7d7;
+            border-left: 4px solid #e53e3e;
+        }
+        .explanation {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #ebf8ff;
+            border-radius: 5px;
+            display: none;
+        }
+        .debug-area {
+            border: 1px solid #cbd5e0;
+            padding: 15px;
+            background-color: #f7fafc;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .debug-result {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .score {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .progress-bar {
+            height: 10px;
+            background-color: #e2e8f0;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background-color: #3498db;
+            width: 0%;
+            transition: width 0.5s;
+        }
+        .timer {
+            text-align: right;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HTML Mastery Challenge - 40 Brain-Stressing Questions</h1>
+        
+        <div class="instructions">
+            <p><strong>Instructions:</strong> This test contains 40 challenging HTML questions that will test your debugging skills, semantic HTML knowledge, form handling, table structures, and more. Some questions include interactive debugging areas where you can fix code directly. You have 60 minutes to complete the test.</p>
+        </div>
+        
+        <div class="timer" id="timer">Time Remaining: 60:00</div>
+        
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        
+        <!-- Question 1 -->
+        <div class="question">
+            <div class="question-number">Question 1/40</div>
+            <div class="question-text">What's wrong with this HTML structure? Identify all errors.</div>
+            <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome&lt;/h1&gt;
+    &lt;div id="main"&gt;
+        &lt;p&gt;This is a paragraph
+        &lt;img src="image.jpg"&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'correct', 1)">Missing lang attribute in html tag, unclosed p tag, img tag missing alt attribute</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 1)">No errors, this is valid HTML</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 1)">Missing meta charset declaration</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 1)">The div should be a section element</div>
+            </div>
+            <div class="explanation" id="explanation1">
+                The HTML has several issues: 1) The &lt;html&gt; tag should include a lang attribute for accessibility. 2) The &lt;p&gt; tag is not properly closed. 3) The &lt;img&gt; tag is missing an alt attribute for accessibility. While a meta charset declaration is recommended, it's not strictly an error as browsers will often default to UTF-8.
+            </div>
+        </div>
+        
+        <!-- Question 2 -->
+        <div class="question">
+            <div class="question-number">Question 2/40</div>
+            <div class="question-text">Debug this form: Fix all accessibility and semantic issues.</div>
+            <div class="code-block">&lt;form&gt;
+    &lt;div&gt;Name:&lt;/div&gt;
+    &lt;input type="text" id="name"&gt;
+    
+    &lt;div&gt;Email:&lt;/div&gt;
+    &lt;input type="email"&gt;
+    
+    &lt;div&gt;Subscribe to newsletter&lt;/div&gt;
+    &lt;input type="checkbox"&gt;
+    
+    &lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</div>
+            <div class="debug-area">
+                <p>Fix the code below:</p>
+                <textarea id="debug2" rows="10" cols="80">&lt;form&gt;
+    &lt;div&gt;Name:&lt;/div&gt;
+    &lt;input type="text" id="name"&gt;
+    
+    &lt;div&gt;Email:&lt;/div&gt;
+    &lt;input type="email"&gt;
+    
+    &lt;div&gt;Subscribe to newsletter&lt;/div&gt;
+    &lt;input type="checkbox"&gt;
+    
+    &lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</textarea>
+                <br>
+                <button onclick="checkDebug(2)">Check Debug</button>
+                <div class="debug-result" id="debugResult2"></div>
+            </div>
+        </div>
+        
+        <!-- Question 3 -->
+        <div class="question">
+            <div class="question-number">Question 3/40</div>
+            <div class="question-text">Which HTML5 element should be used for the main content of a document?</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 3)">&lt;content&gt;</div>
+                <div class="option" onclick="checkAnswer(this, 'correct', 3)">&lt;main&gt;</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 3)">&lt;section&gt;</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 3)">&lt;body&gt;</div>
+            </div>
+            <div class="explanation" id="explanation3">
+                The &lt;main&gt; element represents the dominant content of the &lt;body&gt; of a document. It should be unique to the document and not contain content that is repeated across documents.
+            </div>
+        </div>
+        
+        <!-- Question 4 -->
+        <div class="question">
+            <div class="question-number">Question 4/40</div>
+            <div class="question-text">What's the semantic difference between &lt;b&gt; and &lt;strong&gt; tags?</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 4)">There is no difference, they are interchangeable</div>
+                <div class="option" onclick="checkAnswer(this, 'correct', 4)">&lt;b&gt; is for stylistic bold, &lt;strong&gt; indicates importance</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 4)">&lt;b&gt; is deprecated, always use &lt;strong&gt;</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 4)">&lt;strong&gt; is for headings, &lt;b&gt; for body text</div>
+            </div>
+            <div class="explanation" id="explanation4">
+                While both tags typically render text as bold, &lt;b&gt; is purely presentational (just makes text bold) while &lt;strong&gt; indicates that the text has strong importance. Screen readers may change their tone when reading &lt;strong&gt; content.
+            </div>
+        </div>
+        
+        <!-- Question 5 -->
+        <div class="question">
+            <div class="question-number">Question 5/40</div>
+            <div class="question-text">Debug this table to make it accessible and properly structured:</div>
+            <div class="code-block">&lt;table border="1"&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Name&lt;/td&gt;
+        &lt;td&gt;Age&lt;/td&gt;
+        &lt;td&gt;City&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;John&lt;/td&gt;
+        &lt;td&gt;25&lt;/td&gt;
+        &lt;td&gt;New York&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Jane&lt;/td&gt;
+        &lt;td&gt;30&lt;/td&gt;
+        &lt;td&gt;London&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</div>
+            <div class="debug-area">
+                <p>Fix the code below:</p>
+                <textarea id="debug5" rows="15" cols="80">&lt;table border="1"&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Name&lt;/td&gt;
+        &lt;td&gt;Age&lt;/td&gt;
+        &lt;td&gt;City&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;John&lt;/td&gt;
+        &lt;td&gt;25&lt;/td&gt;
+        &lt;td&gt;New York&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Jane&lt;/td&gt;
+        &lt;td&gt;30&lt;/td&gt;
+        &lt;td&gt;London&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</textarea>
+                <br>
+                <button onclick="checkDebug(5)">Check Debug</button>
+                <div class="debug-result" id="debugResult5"></div>
+            </div>
+        </div>
+        
+        <!-- Additional questions would continue in this pattern -->
+
+          <!-- Question 6 -->
+        <div class="question">
+            <div class="question-number">Question 6/40</div>
+            <div class="question-text">What's wrong with this HTML5 video implementation?</div>
+            <div class="code-block">&lt;video src="movie.mp4" autoplay&gt;
+    Your browser does not support the video tag.
+&lt;/video&gt;</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'correct', 6)">Missing controls attribute, no fallback formats, autoplay without mute</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 6)">Should use &lt;embed&gt; instead of &lt;video&gt;</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 6)">Missing width and height attributes</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 6)">The content inside video tag is invalid</div>
+            </div>
+            <div class="explanation" id="explanation6">
+                Major issues: 1) Missing controls attribute so users can't control playback 2) No multiple source formats for browser compatibility 3) Autoplay without muted attribute may be blocked by browsers 4) No poster attribute for thumbnail.
+            </div>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="question">
+            <div class="question-number">Question 7/40</div>
+            <div class="question-text">Debug this form with validation issues:</div>
+            <div class="code-block">&lt;form&gt;
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="text" id="email"&gt;
+    
+    &lt;label for="age"&gt;Age:&lt;/label&gt;
+    &lt;input type="number" id="age" min="1" max="10"&gt;
+    
+    &lt;label for="website"&gt;Website:&lt;/label&gt;
+    &lt;input type="url" id="website"&gt;
+    
+    &lt;input type="submit" value="Register"&gt;
+&lt;/form&gt;</div>
+            <div class="debug-area">
+                <p>Fix the validation issues:</p>
+                <textarea id="debug7" rows="12" cols="80">&lt;form&gt;
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="text" id="email"&gt;
+    
+    &lt;label for="age"&gt;Age:&lt;/label&gt;
+    &lt;input type="number" id="age" min="1" max="10"&gt;
+    
+    &lt;label for="website"&gt;Website:&lt;/label&gt;
+    &lt;input type="url" id="website"&gt;
+    
+    &lt;input type="submit" value="Register"&gt;
+&lt;/form&gt;</textarea>
+                <br>
+                <button onclick="checkDebug(7)">Check Debug</button>
+                <div class="debug-result" id="debugResult7"></div>
+            </div>
+        </div>
+
+        <!-- Question 8 -->
+        <div class="question">
+            <div class="question-number">Question 8/40</div>
+            <div class="question-text">Which attribute ensures a form field is required before submission?</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 8)">validate="true"</div>
+                <div class="option" onclick="checkAnswer(this, 'correct', 8)">required</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 8)">mandatory</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 8)">necessary</div>
+            </div>
+            <div class="explanation" id="explanation8">
+                The 'required' attribute is a boolean attribute that specifies the input field must be filled out before submitting the form.
+            </div>
+        </div>
+
+        <!-- Question 9 -->
+        <div class="question">
+            <div class="question-number">Question 9/40</div>
+            <div class="question-text">What's the semantic difference between &lt;article&gt; and &lt;section&gt;?</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 9)">&lt;article&gt; is for blog posts, &lt;section&gt; for everything else</div>
+                <div class="option" onclick="checkAnswer(this, 'correct', 9)">&lt;article&gt; is for self-contained content, &lt;section&gt; for thematic grouping</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 9)">&lt;section&gt; is deprecated in HTML5</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 9)">There is no difference, they are interchangeable</div>
+            </div>
+            <div class="explanation" id="explanation9">
+                &lt;article&gt; represents a self-contained composition that could be distributed independently, while &lt;section&gt; represents a thematic grouping of content, typically with a heading.
+            </div>
+        </div>
+
+        <!-- Question 10 -->
+        <div class="question">
+            <div class="question-number">Question 10/40</div>
+            <div class="question-text">Debug this accessibility-unfriendly navigation:</div>
+            <div class="code-block">&lt;div class="nav"&gt;
+    &lt;div onclick="goToHome()"&gt;Home&lt;/div&gt;
+    &lt;div onclick="goToAbout()"&gt;About&lt;/div&gt;
+    &lt;div onclick="goToContact()"&gt;Contact&lt;/div&gt;
+&lt;/div&gt;</div>
+            <div class="debug-area">
+                <p>Make this navigation accessible:</p>
+                <textarea id="debug10" rows="8" cols="80">&lt;div class="nav"&gt;
+    &lt;div onclick="goToHome()"&gt;Home&lt;/div&gt;
+    &lt;div onclick="goToAbout()"&gt;About&lt;/div&gt;
+    &lt;div onclick="goToContact()"&gt;Contact&lt;/div&gt;
+&lt;/div&gt;</textarea>
+                <br>
+                <button onclick="checkDebug(10)">Check Debug</button>
+                <div class="debug-result" id="debugResult10"></div>
+            </div>
+        </div>
+
+        <!-- Question 11 -->
+        <div class="question">
+            <div class="question-number">Question 11/40</div>
+            <div class="question-text">What does the &lt;meta name="viewport"&gt; tag do?</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 11)">It sets the website's description for search engines</div>
+                <div class="option" onclick="checkAnswer(this, 'correct', 11)">It controls the layout on mobile browsers</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 11)">It defines the website's character encoding</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 11)">It specifies the website's author</div>
+            </div>
+            <div class="explanation" id="explanation11">
+                The viewport meta tag gives the browser instructions on how to control the page's dimensions and scaling, particularly important for responsive design on mobile devices.
+            </div>
+        </div>
+
+        <!-- Question 12 -->
+        <div class="question">
+            <div class="question-number">Question 12/40</div>
+            <div class="question-text">What's wrong with this iframe implementation?</div>
+            <div class="code-block">&lt;iframe src="https://example.com" width="500" height="300"&gt;&lt;/iframe&gt;</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'correct', 12)">Missing title attribute for accessibility, no fallback content</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 12)">Should use &lt;embed&gt; instead of &lt;iframe&gt;</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 12)">Width and height should be set in CSS only</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 12)">The src attribute is incorrect</div>
+            </div>
+            <div class="explanation" id="explanation12">
+                Critical issues: 1) Missing title attribute makes it inaccessible to screen readers 2) No content between opening and closing tags for browsers that don't support iframes 3) Consider adding sandbox attribute for security.
+            </div>
+        </div>
+
+        <!-- Question 13 -->
+        <div class="question">
+            <div class="question-number">Question 13/40</div>
+            <div class="question-text">Debug this poorly structured HTML document:</div>
+            <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;div class="header"&gt;
+        &lt;h1&gt;My Website&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;div class="nav"&gt;...&lt;/div&gt;
+    &lt;div class="main-content"&gt;
+        &lt;div class="article"&gt;...&lt;/div&gt;
+        &lt;div class="sidebar"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="footer"&gt;...&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+            <div class="debug-area">
+                <p>Apply proper HTML5 semantic elements:</p>
+                <textarea id="debug13" rows="14" cols="80">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;div class="header"&gt;
+        &lt;h1&gt;My Website&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;div class="nav"&gt;...&lt;/div&gt;
+    &lt;div class="main-content"&gt;
+        &lt;div class="article"&gt;...&lt;/div&gt;
+        &lt;div class="sidebar"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="footer"&gt;...&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+                <br>
+                <button onclick="checkDebug(13)">Check Debug</button>
+                <div class="debug-result" id="debugResult13"></div>
+            </div>
+        </div>
+
+        <!-- Question 14 -->
+        <div class="question">
+            <div class="question-number">Question 14/40</div>
+            <div class="question-text">What is the purpose of the &lt;datalist&gt; element?</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 14)">To create a dropdown menu</div>
+                <div class="option" onclick="checkAnswer(this, 'correct', 14)">To provide autocomplete suggestions for input fields</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 14)">To store data temporarily</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 14)">To define a list of terms and descriptions</div>
+            </div>
+            <div class="explanation" id="explanation14">
+                The &lt;datalist&gt; element contains a set of &lt;option&gt; elements that represent predefined options for an &lt;input&gt; element, providing autocomplete suggestions.
+            </div>
+        </div>
+
+        <!-- Question 15 -->
+        <div class="question">
+            <div class="question-number">Question 15/40</div>
+            <div class="question-text">What's wrong with this form submission method?</div>
+            <div class="code-block">&lt;form action="process.php"&gt;
+    &lt;input type="text" name="username"&gt;
+    &lt;input type="password" name="password"&gt;
+    &lt;button&gt;Login&lt;/button&gt;
+&lt;/form&gt;</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'correct', 15)">Password transmitted in plain text, missing method attribute</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 15)">Should use &lt;input type="submit"&gt; instead of button</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 15)">Missing form validation attributes</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 15)">The action attribute should be empty</div>
+            </div>
+            <div class="explanation" id="explanation15">
+                Critical security issue: Without method="POST", the form defaults to GET, exposing passwords in URL. Always use POST for sensitive data and implement HTTPS.
+            </div>
+        </div>
+
+        <!-- Question 16 -->
+        <div class="question">
+            <div class="question-number">Question 16/40</div>
+            <div class="question-text">Debug this broken image gallery:</div>
+            <div class="code-block">&lt;div class="gallery"&gt;
+    &lt;img src="image1.jpg"&gt;
+    &lt;img src="image2.jpg"&gt;
+    &lt;img src="image3.jpg"&gt;
+    &lt;img src="image4.jpg"&gt;
+&lt;/div&gt;</div>
+            <div class="debug-area">
+                <p">Make this image gallery accessible and semantic:</p>
+                <textarea id="debug16" rows="10" cols="80">&lt;div class="gallery"&gt;
+    &lt;img src="image1.jpg"&gt;
+    &lt;img src="image2.jpg"&gt;
+    &lt;img src="image3.jpg"&gt;
+    &lt;img src="image4.jpg"&gt;
+&lt;/div&gt;</textarea>
+                <br>
+                <button onclick="checkDebug(16)">Check Debug</button>
+                <div class="debug-result" id="debugResult16"></div>
+            </div>
+        </div>
+
+        <!-- Question 17 -->
+        <div class="question">
+            <div class="question-number">Question 17/40</div>
+            <div class="question-text">What is the difference between &lt;span&gt; and &lt;div&gt;?</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'correct', 17)">&lt;span&gt; is inline, &lt;div&gt; is block-level</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 17)">&lt;span&gt; is for text, &lt;div&gt; for layout</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 17)">&lt;div&gt; is deprecated in HTML5</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 17)">There is no difference</div>
+            </div>
+            <div class="explanation" id="explanation17">
+                &lt;span&gt; is an inline container for phrasing content, while &lt;div&gt; is a block-level container for flow content. This affects how they interact with other elements.
+            </div>
+        </div>
+
+        <!-- Question 18 -->
+        <div class="question">
+            <div class="question-number">Question 18/40</div>
+            <div class="question-text">What's wrong with this table structure for screen readers?</div>
+            <div class="code-block">&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Product&lt;/th&gt;
+        &lt;td&gt;Widget A&lt;/td&gt;
+        &lt;td&gt;Widget B&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Price&lt;/th&gt;
+        &lt;td&gt;$10&lt;/td&gt;
+        &lt;td&gt;$15&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'correct', 18)">Headers don't match data cells properly, missing scope attributes</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 18)">Should use &lt;thead&gt; and &lt;tbody&gt;</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 18)">Table is missing a caption</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 18)">All cells should be &lt;th&gt; elements</div>
+            </div>
+            <div class="explanation" id="explanation18">
+                The table structure is transposed incorrectly. Screen readers need proper header-cell relationships using scope attributes or headers attributes to associate data with their headers.
+            </div>
+        </div>
+
+        <!-- Question 19 -->
+        <div class="question">
+            <div class="question-number">Question 19/40</div>
+            <div class="question-text">Debug this form with poor user experience:</div>
+            <div class="code-block">&lt;form&gt;
+    &lt;label&gt;Full Name&lt;/label&gt;
+    &lt;input type="text" name="name"&gt;
+    
+    &lt;label&gt;Email Address&lt;/label&gt;
+    &lt;input type="email" name="email"&gt;
+    
+    &lt;label&gt;Message&lt;/label&gt;
+    &lt;textarea name="message"&gt;&lt;/textarea&gt;
+    
+    &lt;input type="submit" value="Send"&gt;
+&lt;/form&gt;</div>
+            <div class="debug-area">
+                <p">Improve this form's UX:</p>
+                <textarea id="debug19" rows="12" cols="80">&lt;form&gt;
+    &lt;label&gt;Full Name&lt;/label&gt;
+    &lt;input type="text" name="name"&gt;
+    
+    &lt;label&gt;Email Address&lt;/label&gt;
+    &lt;input type="email" name="email"&gt;
+    
+    &lt;label&gt;Message&lt;/label&gt;
+    &lt;textarea name="message"&gt;&lt;/textarea&gt;
+    
+    &lt;input type="submit" value="Send"&gt;
+&lt;/form&gt;</textarea>
+                <br>
+                <button onclick="checkDebug(19)">Check Debug</button>
+                <div class="debug-result" id="debugResult19"></div>
+            </div>
+        </div>
+
+        <!-- Question 20 -->
+        <div class="question">
+            <div class="question-number">Question 20/40</div>
+            <div class="question-text">What is the purpose of the &lt;figure&gt; and &lt;figcaption&gt; elements?</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 20)">To create image galleries</div>
+                <div class="option" onclick="checkAnswer(this, 'correct', 20)">To associate a caption with media content</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 20)">To style images with borders</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 20)">To make images responsive</div>
+            </div>
+            <div class="explanation" id="explanation20">
+                &lt;figure&gt; represents self-contained content like images, diagrams, or code listings, and &lt;figcaption&gt; provides a caption or legend for the &lt;figure&gt; content.
+            </div>
+        </div>
+
+        <!-- Question 21 -->
+        <div class="question">
+            <div class="question-number">Question 21/40</div>
+            <div class="question-text">What's wrong with this anchor tag implementation?</div>
+            <div class="code-block">&lt;a href="#" onclick="loadPage('home')"&gt;Home&lt;/a&gt;</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'correct', 21)">Empty href, non-semantic click handler, inaccessible</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 21)">Should use &lt;button&gt; instead of &lt;a&gt;</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 21)">Missing target attribute</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 21)">Should have rel="nofollow"</div>
+            </div>
+            <div class="explanation" id="explanation21">
+                Multiple issues: 1) href="#" creates poor UX (scrolls to top) 2) Non-semantic use of anchor for JavaScript actions 3) Inaccessible to keyboard and screen readers 4) Consider using &lt;button&gt; for actions.
+            </div>
+        </div>
+
+        <!-- Question 22 -->
+        <div class="question">
+            <div class="question-number">Question 22/40</div>
+            <div class="question-text">Debug this poorly structured list:</div>
+            <div class="code-block">&lt;div&gt;
+    &lt;span&gt;• Apple&lt;/span&gt;&lt;br&gt;
+    &lt;span&gt;• Banana&lt;/span&gt;&lt;br&gt;
+    &lt;span&gt;• Orange&lt;/span&gt;&lt;br&gt;
+&lt;/div&gt;</div>
+            <div class="debug-area">
+                <p">Convert this to proper semantic HTML:</p>
+                <textarea id="debug22" rows="8" cols="80">&lt;div&gt;
+    &lt;span&gt;• Apple&lt;/span&gt;&lt;br&gt;
+    &lt;span&gt;• Banana&lt;/span&gt;&lt;br&gt;
+    &lt;span&gt;• Orange&lt;/span&gt;&lt;br&gt;
+&lt;/div&gt;</textarea>
+                <br>
+                <button onclick="checkDebug(22)">Check Debug</button>
+                <div class="debug-result" id="debugResult22"></div>
+            </div>
+        </div>
+
+        <!-- Question 23 -->
+        <div class="question">
+            <div class="question-number">Question 23/40</div>
+            <div class="question-text">What is the difference between async and defer attributes in scripts?</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'correct', 23)">Async downloads while parsing and executes immediately, defer downloads while parsing but executes after</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 23)">Async is for external scripts, defer for inline</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 23)">Defer is deprecated, use async only</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 23)">They are identical in function</div>
+            </div>
+            <div class="explanation" id="explanation23">
+                Both async and defer download scripts without blocking parsing, but async executes immediately after download (potentially out of order), while defer executes in order after parsing completes.
+            </div>
+        </div>
+
+        <!-- Question 24 -->
+        <div class="question">
+            <div class="question-number">Question 24/40</div>
+            <div class="question-text">What's wrong with this form input for dates?</div>
+            <div class="code-block">&lt;label for="birthday"&gt;Birthday:&lt;/label&gt;
+&lt;input type="text" id="birthday" name="birthday"&gt;</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'correct', 24)">Should use type="date", missing validation</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 24)">Missing placeholder attribute</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 24)">Should use &lt;select&gt; instead</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 24)">Input should have a pattern attribute</div>
+            </div>
+            <div class="explanation" id="explanation24">
+                Using type="text" for dates creates poor UX and requires manual validation. type="date" provides native date pickers and validation across modern browsers.
+            </div>
+        </div>
+
+        <!-- Question 25 -->
+        <div class="question">
+            <div class="question-number">Question 25/40</div>
+            <div class="question-text">Debug this inaccessible data table:</div>
+            <div class="code-block">&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;/td&gt;
+        &lt;td&gt;Q1&lt;/td&gt;
+        &lt;td&gt;Q2&lt;/td&gt;
+        &lt;td&gt;Q3&lt;/td&gt;
+        &lt;td&gt;Q4&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Sales&lt;/td&gt;
+        &lt;td&gt;100&lt;/td&gt;
+        &lt;td&gt;150&lt;/td&gt;
+        &lt;td&gt;200&lt;/td&gt;
+        &lt;td&gt;180&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Expenses&lt;/td&gt;
+        &lt;td&gt;80&lt;/td&gt;
+        &lt;td&gt;90&lt;/td&gt;
+        &lt;td&gt;120&lt;/td&gt;
+        &lt;td&gt;110&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</div>
+            <div class="debug-area">
+                <p">Make this table accessible:</p>
+                <textarea id="debug25" rows="16" cols="80">&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;/td&gt;
+        &lt;td&gt;Q1&lt;/td&gt;
+        &lt;td&gt;Q2&lt;/td&gt;
+        &lt;td&gt;Q3&lt;/td&gt;
+        &lt;td&gt;Q4&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Sales&lt;/td&gt;
+        &lt;td&gt;100&lt;/td&gt;
+        &lt;td&gt;150&lt;/td&gt;
+        &lt;td&gt;200&lt;/td&gt;
+        &lt;td&gt;180&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Expenses&lt;/td&gt;
+        &lt;td&gt;80&lt;/td&gt;
+        &lt;td&gt;90&lt;/td&gt;
+        &lt;td&gt;120&lt;/td&gt;
+        &lt;td&gt;110&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</textarea>
+                <br>
+                <button onclick="checkDebug(25)">Check Debug</button>
+                <div class="debug-result" id="debugResult25"></div>
+            </div>
+        </div>
+
+        <!-- Question 26 -->
+        <div class="question">
+            <div class="question-number">Question 26/40</div>
+            <div class="question-text">What is the purpose of the &lt;template&gt; element?</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'correct', 26)">To hold client-side content that isn't rendered until activated</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 26)">To create reusable CSS styles</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 26)">To define page layouts</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 26)">To store meta information</div>
+            </div>
+            <div class="explanation" id="explanation26">
+                The &lt;template&gt; element serves as a mechanism for holding client-side content that you don't want to be rendered when a page loads but may be instantiated later during runtime using JavaScript.
+            </div>
+        </div>
+
+        <!-- Question 27 -->
+        <div class="question">
+            <div class="question-number">Question 27/40</div>
+            <div class="question-text">What's wrong with this meta tag implementation?</div>
+            <div class="code-block">&lt;meta name="description" content="Welcome to our website"&gt;
+&lt;meta name="keywords" content="business, company, services"&gt;
+&lt;meta name="author" content="John Doe"&gt;</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'correct', 27)">Keywords meta tag is obsolete and ignored by search engines</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 27)">Missing charset meta tag</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 27)">Description is too short</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 27)">Author should be an email address</div>
+            </div>
+            <div class="explanation" id="explanation27">
+                The keywords meta tag was abused in the past and is now ignored by all major search engines. Focus on quality content and proper description tags instead.
+            </div>
+        </div>
+
+        <!-- Question 28 -->
+        <div class="question">
+            <div class="question-number">Question 28/40</div>
+            <div class="question-text">Debug this form with accessibility issues:</div>
+            <div class="code-block">&lt;form&gt;
+    &lt;p&gt;Select your favorite color:&lt;/p&gt;
+    &lt;input type="radio" name="color" value="red"&gt; Red&lt;br&gt;
+    &lt;input type="radio" name="color" value="blue"&gt; Blue&lt;br&gt;
+    &lt;input type="radio" name="color" value="green"&gt; Green&lt;br&gt;
+    
+    &lt;p&gt;Select your interests:&lt;/p&gt;
+    &lt;input type="checkbox" name="sports"&gt; Sports&lt;br&gt;
+    &lt;input type="checkbox" name="music"&gt; Music&lt;br&gt;
+    &lt;input type="checkbox" name="books"&gt; Books&lt;br&gt;
+&lt;/form&gt;</div>
+            <div class="debug-area">
+                <p">Fix the accessibility issues:</p>
+                <textarea id="debug28" rows="14" cols="80">&lt;form&gt;
+    &lt;p&gt;Select your favorite color:&lt;/p&gt;
+    &lt;input type="radio" name="color" value="red"&gt; Red&lt;br&gt;
+    &lt;input type="radio" name="color" value="blue"&gt; Blue&lt;br&gt;
+    &lt;input type="radio" name="color" value="green"&gt; Green&lt;br&gt;
+    
+    &lt;p&gt;Select your interests:&lt;/p&gt;
+    &lt;input type="checkbox" name="sports"&gt; Sports&lt;br&gt;
+    &lt;input type="checkbox" name="music"&gt; Music&lt;br&gt;
+    &lt;input type="checkbox" name="books"&gt; Books&lt;br&gt;
+&lt;/form&gt;</textarea>
+                <br>
+                <button onclick="checkDebug(28)">Check Debug</button>
+                <div class="debug-result" id="debugResult28"></div>
+            </div>
+        </div>
+
+        <!-- Question 29 -->
+        <div class="question">
+            <div class="question-number">Question 29/40</div>
+            <div class="question-text">What is the difference between &lt;ul&gt; and &lt;ol&gt;?</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'correct', 29)">&lt;ul&gt; is unordered (bullets), &lt;ol&gt; is ordered (numbers)</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 29)">&lt;ul&gt; is for navigation, &lt;ol&gt; for content</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 29)">&lt;ol&gt; is deprecated in HTML5</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 29)">They are identical</div>
+            </div>
+            <div class="explanation" id="explanation29">
+                &lt;ul&gt; represents an unordered list (typically with bullet points), while &lt;ol&gt; represents an ordered list (typically with numbers or letters indicating sequence).
+            </div>
+        </div>
+
+        <!-- Question 30 -->
+        <div class="question">
+            <div class="question-number">Question 30/40</div>
+            <div class="question-text">What's wrong with this HTML structure for a blog post?</div>
+            <div class="code-block">&lt;div class="blog-post"&gt;
+    &lt;div class="title"&gt;My Blog Post&lt;/div&gt;
+    &lt;div class="date"&gt;January 1, 2023&lt;/div&gt;
+    &lt;div class="content"&gt;
+        &lt;p&gt;This is the first paragraph...&lt;/p&gt;
+        &lt;p&gt;This is the second paragraph...&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="author"&gt;John Doe&lt;/div&gt;
+&lt;/div&gt;</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'correct', 30)">Missing semantic HTML5 elements like &lt;article&gt;, &lt;header&gt;, &lt;time&gt;</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 30)">Should use &lt;section&gt; instead of &lt;div&gt;</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 30)">Missing &lt;h1&gt; for the title</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 30)">Author should be before content</div>
+            </div>
+            <div class="explanation" id="explanation30">
+                Better structure would use: &lt;article&gt; for the post, &lt;header&gt; for title/date, &lt;time datetime&gt; for machine-readable date, and &lt;footer&gt; for author information.
+            </div>
+        </div>
+
+        <!-- Question 31 -->
+        <div class="question">
+            <div class="question-number">Question 31/40</div>
+            <div class="question-text">Debug this broken progress indicator:</div>
+            <div class="code-block">&lt;div class="progress"&gt;
+    &lt;span&gt;50% complete&lt;/span&gt;
+&lt;/div&gt;</div>
+            <div class="debug-area">
+                <p">Convert to proper HTML5 progress element:</p>
+                <textarea id="debug31" rows="6" cols="80">&lt;div class="progress"&gt;
+    &lt;span&gt;50% complete&lt;/span&gt;
+&lt;/div&gt;</textarea>
+                <br>
+                <button onclick="checkDebug(31)">Check Debug</button>
+                <div class="debug-result" id="debugResult31"></div>
+            </div>
+        </div>
+
+        <!-- Question 32 -->
+        <div class="question">
+            <div class="question-number">Question 32/40</div>
+            <div class="question-text">What is the purpose of the &lt;details&gt; and &lt;summary&gt; elements?</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'correct', 32)">To create collapsible content sections</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 32)">To create tooltips</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 32)">To define document metadata</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 32)">To create dropdown menus</div>
+            </div>
+            <div class="explanation" id="explanation32">
+                &lt;details&gt; creates a disclosure widget in which information is visible only when the widget is toggled open, and &lt;summary&gt; provides a summary or label for the &lt;details&gt; content.
+            </div>
+        </div>
+
+        <!-- Question 33 -->
+        <div class="question">
+            <div class="question-number">Question 33/40</div>
+            <div class="question-text">What's wrong with this form field grouping?</div>
+            <div class="code-block">&lt;form&gt;
+    &lt;div&gt;Personal Information&lt;/div&gt;
+    &lt;label for="name"&gt;Name:&lt;/label&gt;
+    &lt;input type="text" id="name"&gt;
+    
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" id="email"&gt;
+    
+    &lt;div&gt;Payment Information&lt;/div&gt;
+    &lt;label for="card"&gt;Card Number:&lt;/label&gt;
+    &lt;input type="text" id="card"&gt;
+&lt;/form&gt;</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'correct', 33)">Missing &lt;fieldset&gt; and &lt;legend&gt; for grouping related fields</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 33)">Should use &lt;section&gt; instead of &lt;div&gt;</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 33)">Missing form labels</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 33)">Input types are incorrect</div>
+            </div>
+            <div class="explanation" id="explanation33">
+                &lt;fieldset&gt; groups related form controls, and &lt;legend&gt; provides a caption. This improves accessibility and usability for all users, especially those using screen readers.
+            </div>
+        </div>
+
+        <!-- Question 34 -->
+        <div class="question">
+            <div class="question-number">Question 34/40</div>
+            <div class="question-text">Debug this non-semantic button implementation:</div>
+            <div class="code-block">&lt;div class="button" onclick="submitForm()"&gt;
+    Click Me
+&lt;/div&gt;</div>
+            <div class="debug-area">
+                <p">Convert to proper button element:</p>
+                <textarea id="debug34" rows="6" cols="80">&lt;div class="button" onclick="submitForm()"&gt;
+    Click Me
+&lt;/div&gt;</textarea>
+                <br>
+                <button onclick="checkDebug(34)">Check Debug</button>
+                <div class="debug-result" id="debugResult34"></div>
+            </div>
+        </div>
+
+        <!-- Question 35 -->
+        <div class="question">
+            <div class="question-number">Question 35/40</div>
+            <div class="question-text">What is the purpose of the &lt;mark&gt; element?</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'correct', 35)">To highlight text for reference or notation purposes</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 35)">To indicate important text</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 35)">To create colored text</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 35)">To mark required form fields</div>
+            </div>
+            <div class="explanation" id="explanation35">
+                &lt;mark&gt; represents text which is marked or highlighted for reference or notation purposes, due to its relevance in another context. It's not for importance (use &lt;strong&gt;) or styling.
+            </div>
+        </div>
+
+        <!-- Question 36 -->
+        <div class="question">
+            <div class="question-number">Question 36/40</div>
+            <div class="question-text">What's wrong with this audio player implementation?</div>
+            <div class="code-block">&lt;audio src="audio.mp3"&gt;&lt;/audio&gt;</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'correct', 36)">Missing controls attribute, no fallback content or formats</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 36)">Should use &lt;embed&gt; instead</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 36)">Missing autoplay attribute</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 36)">Src should be a full URL</div>
+            </div>
+            <div class="explanation" id="explanation36">
+                Without the controls attribute, users can't play/pause the audio. Also, provide multiple source formats (MP3, OGG, WAV) for browser compatibility and fallback content for unsupported browsers.
+            </div>
+        </div>
+
+        <!-- Question 37 -->
+        <div class="question">
+            <div class="question-number">Question 37/40</div>
+            <div class="question-text">Debug this poorly structured definition list:</div>
+            <div class="code-block">&lt;div&gt;
+    &lt;span&gt;HTML&lt;/span&gt;
+    &lt;span&gt;HyperText Markup Language&lt;/span&gt;
+    &lt;br&gt;
+    &lt;span&gt;CSS&lt;/span&gt;
+    &lt;span&gt;Cascading Style Sheets&lt;/span&gt;
+&lt;/div&gt;</div>
+            <div class="debug-area">
+                <p">Convert to proper definition list:</p>
+                <textarea id="debug37" rows="8" cols="80">&lt;div&gt;
+    &lt;span&gt;HTML&lt;/span&gt;
+    &lt;span&gt;HyperText Markup Language&lt;/span&gt;
+    &lt;br&gt;
+    &lt;span&gt;CSS&lt;/span&gt;
+    &lt;span&gt;Cascading Style Sheets&lt;/span&gt;
+&lt;/div&gt;</textarea>
+                <br>
+                <button onclick="checkDebug(37)">Check Debug</button>
+                <div class="debug-result" id="debugResult37"></div>
+            </div>
+        </div>
+
+        <!-- Question 38 -->
+        <div class="question">
+            <div class="question-number">Question 38/40</div>
+            <div class="question-text">What is the difference between &lt;input type="submit"&gt; and &lt;button type="submit"&gt;?</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'correct', 38)">&lt;button&gt; can contain HTML, &lt;input&gt; is text only</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 38)">&lt;input&gt; is deprecated</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 38)">&lt;button&gt; doesn't work in all browsers</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 38)">They are identical</div>
+            </div>
+            <div class="explanation" id="explanation38">
+                &lt;button&gt; can contain HTML content (like images or formatted text), while &lt;input type="submit"&gt; only displays text from its value attribute. Otherwise, they function similarly.
+            </div>
+        </div>
+
+        <!-- Question 39 -->
+        <div class="question">
+            <div class="question-number">Question 39/40</div>
+            <div class="question-text">What's wrong with this accessibility-unfriendly skip link?</div>
+            <div class="code-block">&lt;a href="#main" style="display: none;"&gt;Skip to main content&lt;/a&gt;</div>
+            <div class="options">
+                <div class="option" onclick="checkAnswer(this, 'correct', 39)">Hidden from all users, should be visible on focus for keyboard users</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 39)">Should use &lt;button&gt; instead of &lt;a&gt;</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 39)">Missing target attribute</div>
+                <div class="option" onclick="checkAnswer(this, 'incorrect', 39)">Should have rel="nofollow"</div>
+            </div>
+            <div class="explanation" id="explanation39">
+                Skip links should be hidden by default but become visible when focused by keyboard users. Use CSS like: position: absolute; left: -10000px; and then position: static when focused.
+            </div>
+        </div>
+
+        <!-- Question 40 -->
+        <div class="question">
+            <div class="question-number">Question 40/40</div>
+            <div class="question-text">Debug this final complex form with multiple issues:</div>
+            <div class="code-block">&lt;form action="#"&gt;
+    &lt;div&gt;Sign Up&lt;/div&gt;
+    
+    &lt;label&gt;Username&lt;/label&gt;
+    &lt;input type="text"&gt;
+    
+    &lt;label&gt;Password&lt;/label&gt;
+    &lt;input type="password"&gt;
+    
+    &lt;label&gt;Confirm Password&lt;/label&gt;
+    &lt;input type="password"&gt;
+    
+    &lt;label&gt;Newsletter&lt;/label&gt;
+    &lt;input type="checkbox"&gt; Yes, sign me up
+    
+    &lt;input type="button" value="Submit"&gt;
+&lt;/form&gt;</div>
+            <div class="debug-area">
+                <p">Fix all issues in this form:</p>
+                <textarea id="debug40" rows="16" cols="80">&lt;form action="#"&gt;
+    &lt;div&gt;Sign Up&lt;/div&gt;
+    
+    &lt;label&gt;Username&lt;/label&gt;
+    &lt;input type="text"&gt;
+    
+    &lt;label&gt;Password&lt;/label&gt;
+    &lt;input type="password"&gt;
+    
+    &lt;label&gt;Confirm Password&lt;/label&gt;
+    &lt;input type="password"&gt;
+    
+    &lt;label&gt;Newsletter&lt;/label&gt;
+    &lt;input type="checkbox"&gt; Yes, sign me up
+    
+    &lt;input type="button" value="Submit"&gt;
+&lt;/form&gt;</textarea>
+                <br>
+                <button onclick="checkDebug(40)">Check Debug</button>
+                <div class="debug-result" id="debugResult40"></div>
+            </div>
+        </div>
+  
+        <div class="score">
+            <p>Your Score: <span id="score">0</span>/40</p>
+            <button onclick="submitTest()">Submit Test</button>
+        </div>
+    </div>
+
+    <script>
+        let score = 0;
+        let answeredQuestions = 0;
+        let timeLeft = 60 * 60; // 60 minutes in seconds
+        const totalQuestions = 40;
+        
+        // Timer function
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').textContent = `Time Remaining: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeLeft > 0) {
+                timeLeft--;
+                setTimeout(updateTimer, 1000);
+            } else {
+                submitTest();
+            }
+        }
+        
+        // Start the timer
+        updateTimer();
+        
+        function checkAnswer(element, type, questionNum) {
+            // Remove any existing classes from options in this question
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+            });
+            
+            // Add appropriate class to clicked option
+            element.classList.add(type);
+            
+            // Show explanation
+            document.getElementById('explanation' + questionNum).style.display = 'block';
+            
+            // Update score if correct
+            if (type === 'correct') {
+                score++;
+                document.getElementById('score').textContent = score;
+            }
+            
+            // Update progress
+            answeredQuestions++;
+            document.getElementById('progress').style.width = (answeredQuestions / totalQuestions * 100) + '%';
+        }
+        
+        function checkDebug(questionNum) {
+            const debugArea = document.getElementById('debug' + questionNum);
+            const resultArea = document.getElementById('debugResult' + questionNum);
+            
+            // For demonstration purposes, we'll use simple checks
+            // In a real application, this would be more sophisticated
+            
+            let userCode = debugArea.value;
+            let feedback = "";
+            
+            switch(questionNum) {
+                case 2:
+                    // Check for form accessibility fixes
+                    if (userCode.includes('label') && userCode.includes('for=') && 
+                        (userCode.includes('type="checkbox"') || userCode.includes("type='checkbox'"))) {
+                        feedback = "Good job! You've added proper labels and associated them with inputs.";
+                        score++;
+                    } else {
+                        feedback = "Not quite. Remember to: 1) Replace divs with proper label tags, 2) Add for attributes to associate labels with inputs, 3) Add id attributes to inputs if missing.";
+                    }
+                    break;
+                case 5:
+                    // Check for table accessibility fixes
+                    if (userCode.includes('thead') && userCode.includes('th') && 
+                        (userCode.includes('tbody') || userCode.includes('tfoot'))) {
+                        feedback = "Excellent! You've properly structured the table with thead, tbody, and th elements.";
+                        score++;
+                    } else {
+                        feedback = "Keep trying. A proper table should have: 1) &lt;thead&gt; for header row with &lt;th&gt; elements, 2) &lt;tbody&gt; for data rows, 3) Header cells should use &lt;th&gt; not &lt;td&gt;.";
+                    }
+                    break;
+                default:
+                    feedback = "Debug check not implemented for this question.";
+            }
+
+          case 7:
+        if (userCode.includes('type="email"') && userCode.includes('min=') && 
+            userCode.includes('max=') && userCode.includes('type="url"')) {
+            feedback = "Good! You've corrected the input types and validation attributes.";
+            score++;
+        } else {
+            feedback = "Check: 1) Email field should have type='email' 2) Age should have proper min/max 3) Website should have type='url'";
+        }
+        break;
+    case 10:
+        if (userCode.includes('<nav>') && userCode.includes('<a href=') && 
+            !userCode.includes('onclick=')) {
+            feedback = "Excellent! You've created semantic navigation with proper anchor tags.";
+            score++;
+        } else {
+            feedback = "Try: 1) Use <nav> element 2) Replace divs with <a> tags with proper href 3) Remove onclick handlers";
+        }
+        break;
+    case 13:
+        if (userCode.includes('<header>') && userCode.includes('<nav>') && 
+            userCode.includes('<main>') && userCode.includes('<footer>')) {
+            feedback = "Perfect! You've applied proper HTML5 semantic structure.";
+            score++;
+        } else {
+            feedback = "Use: <header>, <nav>, <main>, <article>, <aside>, <footer> instead of generic divs";
+        }
+        break;
+    case 16:
+        if (userCode.includes('alt=') && (userCode.includes('<figure>') || 
+            userCode.includes('role='))) {
+            feedback = "Great! You've made the gallery accessible with alt text and proper semantics.";
+            score++;
+        } else {
+            feedback = "Add: 1) alt attributes to all images 2) Consider <figure> elements 3) Add role='list' and 'listitem' if needed";
+        }
+        break;
+    case 19:
+        if (userCode.includes('placeholder=') && userCode.includes('required') && 
+            userCode.includes('for=')) {
+            feedback = "Excellent UX improvements! Placeholders, required fields, and proper labeling.";
+            score++;
+        } else {
+            feedback = "Add: 1) placeholder attributes for hints 2) required attributes 3) Proper label association with for/id";
+        }
+        break;
+    case 22:
+        if (userCode.includes('<ul>') && userCode.includes('<li>') && 
+            !userCode.includes('<br>')) {
+            feedback = "Perfect! You've created a proper semantic list.";
+            score++;
+        } else {
+            feedback = "Convert to: <ul> with <li> elements for each item, remove manual bullets and <br> tags";
+        }
+        break;
+    case 25:
+        if (userCode.includes('scope=') && userCode.includes('<th>') && 
+            userCode.includes('id=') && userCode.includes('headers=')) {
+            feedback = "Excellent! You've made the complex table fully accessible.";
+            score++;
+        } else {
+            feedback = "For complex tables: 1) Add scope attributes 2) Use id/headers for cell associations 3) Consider <caption>";
+        }
+        break;
+    case 28:
+        if (userCode.includes('<fieldset>') && userCode.includes('<legend>') && 
+            userCode.match(/<label.*for=.*>/g)?.length >= 3) {
+            feedback = "Perfect! You've properly grouped and labeled the form controls.";
+            score++;
+        } else {
+            feedback = "Use: 1) <fieldset> to group related controls 2) <legend> for group labels 3) Proper label association";
+        }
+        break;
+    case 31:
+        if (userCode.includes('<progress') && userCode.includes('value=') && 
+            (userCode.includes('max=') || userCode.includes('50%'))) {
+            feedback = "Great! You're using the proper HTML5 progress element.";
+            score++;
+        } else {
+            feedback = "Use: <progress value='50' max='100'>50%</progress> for progress indicators";
+        }
+        break;
+    case 34:
+        if (userCode.includes('<button') && !userCode.includes('<div class="button"')) {
+            feedback = "Perfect! You've replaced the div with a proper button element.";
+            score++;
+        } else {
+            feedback = "Replace the div with: <button type='button'>Click Me</button> for proper semantics and accessibility";
+        }
+        break;
+    case 37:
+        if (userCode.includes('<dl>') && userCode.includes('<dt>') && 
+            userCode.includes('<dd>')) {
+            feedback = "Excellent! You've created a proper definition list.";
+            score++;
+        } else {
+            feedback = "Use: <dl> for the list, <dt> for terms, <dd> for definitions";
+        }
+        break;
+    case 40:
+        if (userCode.includes('method="POST"') && userCode.includes('type="submit"') && 
+            userCode.includes('required') && userCode.match(/for=.*id=/g)) {
+            feedback = "Perfect! You've fixed all form issues comprehensively.";
+            score++;
+        } else {
+            feedback = "Fix: 1) Add method='POST' 2) Change button to type='submit' 3) Add required attributes 4) Proper label association";
+        }
+        break;
+    default:
+        feedback = "Debug check not implemented for this question.";
+}
+            
+            resultArea.textContent = feedback;
+            resultArea.style.display = 'block';
+            document.getElementById('score').textContent = score;
+            
+            // Update progress
+            answeredQuestions++;
+            document.getElementById('progress').style.width = (answeredQuestions / totalQuestions * 100) + '%';
+        }
+        
+        function submitTest() {
+            alert(`Test submitted! Your final score is ${score}/${totalQuestions}.`);
+            // In a real application, this would send the results to a server
+        }
+    </script>
+</body>
+</html>
