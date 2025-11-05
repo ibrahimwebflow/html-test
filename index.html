@@ -1131,159 +1131,145 @@
         }
         
         function checkDebug(questionNum) {
-            const debugArea = document.getElementById('debug' + questionNum);
-            const resultArea = document.getElementById('debugResult' + questionNum);
-            
-            // For demonstration purposes, we'll use simple checks
-            // In a real application, this would be more sophisticated
-            
-            let userCode = debugArea.value;
-            let feedback = "";
-            
-            switch(questionNum) {
-                case 2:
-                    // Check for form accessibility fixes
-                    if (userCode.includes('label') && userCode.includes('for=') && 
-                        (userCode.includes('type="checkbox"') || userCode.includes("type='checkbox'"))) {
-                        feedback = "Good job! You've added proper labels and associated them with inputs.";
-                        score++;
-                    } else {
-                        feedback = "Not quite. Remember to: 1) Replace divs with proper label tags, 2) Add for attributes to associate labels with inputs, 3) Add id attributes to inputs if missing.";
-                    }
-                    break;
-                case 5:
-                    // Check for table accessibility fixes
-                    if (userCode.includes('thead') && userCode.includes('th') && 
-                        (userCode.includes('tbody') || userCode.includes('tfoot'))) {
-                        feedback = "Excellent! You've properly structured the table with thead, tbody, and th elements.";
-                        score++;
-                    } else {
-                        feedback = "Keep trying. A proper table should have: 1) &lt;thead&gt; for header row with &lt;th&gt; elements, 2) &lt;tbody&gt; for data rows, 3) Header cells should use &lt;th&gt; not &lt;td&gt;.";
-                    }
-                    break;
-                default:
-                    feedback = "Debug check not implemented for this question.";
+    const debugArea = document.getElementById('debug' + questionNum);
+    const resultArea = document.getElementById('debugResult' + questionNum);
+    
+    let userCode = debugArea.value;
+    let feedback = "";
+    
+    switch(questionNum) {
+        case 2:
+            if (userCode.includes('label') && userCode.includes('for=') && 
+                userCode.includes('id=')) {
+                feedback = "Good job! You've added proper labels and associated them with inputs.";
+                score++;
+            } else {
+                feedback = "Not quite. Remember to: 1) Replace divs with proper label tags, 2) Add for attributes to associate labels with inputs, 3) Add id attributes to inputs if missing.";
             }
-
-          case 7:
-        if (userCode.includes('type="email"') && userCode.includes('min=') && 
-            userCode.includes('max=') && userCode.includes('type="url"')) {
-            feedback = "Good! You've corrected the input types and validation attributes.";
-            score++;
-        } else {
-            feedback = "Check: 1) Email field should have type='email' 2) Age should have proper min/max 3) Website should have type='url'";
-        }
-        break;
-    case 10:
-        if (userCode.includes('<nav>') && userCode.includes('<a href=') && 
-            !userCode.includes('onclick=')) {
-            feedback = "Excellent! You've created semantic navigation with proper anchor tags.";
-            score++;
-        } else {
-            feedback = "Try: 1) Use <nav> element 2) Replace divs with <a> tags with proper href 3) Remove onclick handlers";
-        }
-        break;
-    case 13:
-        if (userCode.includes('<header>') && userCode.includes('<nav>') && 
-            userCode.includes('<main>') && userCode.includes('<footer>')) {
-            feedback = "Perfect! You've applied proper HTML5 semantic structure.";
-            score++;
-        } else {
-            feedback = "Use: <header>, <nav>, <main>, <article>, <aside>, <footer> instead of generic divs";
-        }
-        break;
-    case 16:
-        if (userCode.includes('alt=') && (userCode.includes('<figure>') || 
-            userCode.includes('role='))) {
-            feedback = "Great! You've made the gallery accessible with alt text and proper semantics.";
-            score++;
-        } else {
-            feedback = "Add: 1) alt attributes to all images 2) Consider <figure> elements 3) Add role='list' and 'listitem' if needed";
-        }
-        break;
-    case 19:
-        if (userCode.includes('placeholder=') && userCode.includes('required') && 
-            userCode.includes('for=')) {
-            feedback = "Excellent UX improvements! Placeholders, required fields, and proper labeling.";
-            score++;
-        } else {
-            feedback = "Add: 1) placeholder attributes for hints 2) required attributes 3) Proper label association with for/id";
-        }
-        break;
-    case 22:
-        if (userCode.includes('<ul>') && userCode.includes('<li>') && 
-            !userCode.includes('<br>')) {
-            feedback = "Perfect! You've created a proper semantic list.";
-            score++;
-        } else {
-            feedback = "Convert to: <ul> with <li> elements for each item, remove manual bullets and <br> tags";
-        }
-        break;
-    case 25:
-        if (userCode.includes('scope=') && userCode.includes('<th>') && 
-            userCode.includes('id=') && userCode.includes('headers=')) {
-            feedback = "Excellent! You've made the complex table fully accessible.";
-            score++;
-        } else {
-            feedback = "For complex tables: 1) Add scope attributes 2) Use id/headers for cell associations 3) Consider <caption>";
-        }
-        break;
-    case 28:
-        if (userCode.includes('<fieldset>') && userCode.includes('<legend>') && 
-            userCode.match(/<label.*for=.*>/g)?.length >= 3) {
-            feedback = "Perfect! You've properly grouped and labeled the form controls.";
-            score++;
-        } else {
-            feedback = "Use: 1) <fieldset> to group related controls 2) <legend> for group labels 3) Proper label association";
-        }
-        break;
-    case 31:
-        if (userCode.includes('<progress') && userCode.includes('value=') && 
-            (userCode.includes('max=') || userCode.includes('50%'))) {
-            feedback = "Great! You're using the proper HTML5 progress element.";
-            score++;
-        } else {
-            feedback = "Use: <progress value='50' max='100'>50%</progress> for progress indicators";
-        }
-        break;
-    case 34:
-        if (userCode.includes('<button') && !userCode.includes('<div class="button"')) {
-            feedback = "Perfect! You've replaced the div with a proper button element.";
-            score++;
-        } else {
-            feedback = "Replace the div with: <button type='button'>Click Me</button> for proper semantics and accessibility";
-        }
-        break;
-    case 37:
-        if (userCode.includes('<dl>') && userCode.includes('<dt>') && 
-            userCode.includes('<dd>')) {
-            feedback = "Excellent! You've created a proper definition list.";
-            score++;
-        } else {
-            feedback = "Use: <dl> for the list, <dt> for terms, <dd> for definitions";
-        }
-        break;
-    case 40:
-        if (userCode.includes('method="POST"') && userCode.includes('type="submit"') && 
-            userCode.includes('required') && userCode.match(/for=.*id=/g)) {
-            feedback = "Perfect! You've fixed all form issues comprehensively.";
-            score++;
-        } else {
-            feedback = "Fix: 1) Add method='POST' 2) Change button to type='submit' 3) Add required attributes 4) Proper label association";
-        }
-        break;
-    default:
-        feedback = "Debug check not implemented for this question.";
+            break;
+        case 5:
+            if (userCode.includes('thead') && userCode.includes('th') && 
+                userCode.includes('tbody')) {
+                feedback = "Excellent! You've properly structured the table with thead, tbody, and th elements.";
+                score++;
+            } else {
+                feedback = "Keep trying. A proper table should have: 1) &lt;thead&gt; for header row with &lt;th&gt; elements, 2) &lt;tbody&gt; for data rows, 3) Header cells should use &lt;th&gt; not &lt;td&gt;.";
+            }
+            break;
+        case 7:
+            if (userCode.includes('type="email"') && userCode.includes('type="url"')) {
+                feedback = "Good! You've corrected the input types and validation attributes.";
+                score++;
+            } else {
+                feedback = "Check: 1) Email field should have type='email' 2) Website should have type='url'";
+            }
+            break;
+        case 10:
+            if (userCode.includes('<nav>') && userCode.includes('<a href=') && 
+                !userCode.includes('onclick=')) {
+                feedback = "Excellent! You've created semantic navigation with proper anchor tags.";
+                score++;
+            } else {
+                feedback = "Try: 1) Use <nav> element 2) Replace divs with <a> tags with proper href 3) Remove onclick handlers";
+            }
+            break;
+        case 13:
+            if (userCode.includes('<header>') && userCode.includes('<nav>') && 
+                userCode.includes('<main>') && userCode.includes('<footer>')) {
+                feedback = "Perfect! You've applied proper HTML5 semantic structure.";
+                score++;
+            } else {
+                feedback = "Use: <header>, <nav>, <main>, <article>, <aside>, <footer> instead of generic divs";
+            }
+            break;
+        case 16:
+            if (userCode.includes('alt=') && userCode.includes('figure') || userCode.includes('role=')) {
+                feedback = "Great! You've made the gallery accessible with alt text and proper semantics.";
+                score++;
+            } else {
+                feedback = "Add: 1) alt attributes to all images 2) Consider <figure> elements 3) Add role='list' and 'listitem' if needed";
+            }
+            break;
+        case 19:
+            if (userCode.includes('placeholder=') && userCode.includes('required') && 
+                userCode.includes('for=')) {
+                feedback = "Excellent UX improvements! Placeholders, required fields, and proper labeling.";
+                score++;
+            } else {
+                feedback = "Add: 1) placeholder attributes for hints 2) required attributes 3) Proper label association with for/id";
+            }
+            break;
+        case 22:
+            if (userCode.includes('<ul>') && userCode.includes('<li>') && 
+                !userCode.includes('<br>')) {
+                feedback = "Perfect! You've created a proper semantic list.";
+                score++;
+            } else {
+                feedback = "Convert to: <ul> with <li> elements for each item, remove manual bullets and <br> tags";
+            }
+            break;
+        case 25:
+            if (userCode.includes('scope=') && userCode.includes('<th>')) {
+                feedback = "Excellent! You've made the complex table fully accessible.";
+                score++;
+            } else {
+                feedback = "For complex tables: 1) Add scope attributes 2) Use proper th elements 3) Consider <caption>";
+            }
+            break;
+        case 28:
+            if (userCode.includes('<fieldset>') && userCode.includes('<legend>')) {
+                feedback = "Perfect! You've properly grouped and labeled the form controls.";
+                score++;
+            } else {
+                feedback = "Use: 1) <fieldset> to group related controls 2) <legend> for group labels 3) Proper label association";
+            }
+            break;
+        case 31:
+            if (userCode.includes('<progress') && userCode.includes('value=')) {
+                feedback = "Great! You're using the proper HTML5 progress element.";
+                score++;
+            } else {
+                feedback = "Use: <progress value='50' max='100'>50%</progress> for progress indicators";
+            }
+            break;
+        case 34:
+            if (userCode.includes('<button') && !userCode.includes('<div class="button"')) {
+                feedback = "Perfect! You've replaced the div with a proper button element.";
+                score++;
+            } else {
+                feedback = "Replace the div with: <button type='button'>Click Me</button> for proper semantics and accessibility";
+            }
+            break;
+        case 37:
+            if (userCode.includes('<dl>') && userCode.includes('<dt>') && 
+                userCode.includes('<dd>')) {
+                feedback = "Excellent! You've created a proper definition list.";
+                score++;
+            } else {
+                feedback = "Use: <dl> for the list, <dt> for terms, <dd> for definitions";
+            }
+            break;
+        case 40:
+            if (userCode.includes('method="POST"') && userCode.includes('type="submit"') && 
+                userCode.includes('required')) {
+                feedback = "Perfect! You've fixed all form issues comprehensively.";
+                score++;
+            } else {
+                feedback = "Fix: 1) Add method='POST' 2) Change button to type='submit' 3) Add required attributes 4) Proper label association";
+            }
+            break;
+        default:
+            feedback = "Debug check not implemented for this question.";
+    }
+    
+    resultArea.textContent = feedback;
+    resultArea.style.display = 'block';
+    document.getElementById('score').textContent = score;
+    
+    // Update progress
+    answeredQuestions++;
+    document.getElementById('progress').style.width = (answeredQuestions / totalQuestions * 100) + '%';
 }
-            
-            resultArea.textContent = feedback;
-            resultArea.style.display = 'block';
-            document.getElementById('score').textContent = score;
-            
-            // Update progress
-            answeredQuestions++;
-            document.getElementById('progress').style.width = (answeredQuestions / totalQuestions * 100) + '%';
-        }
         
         function submitTest() {
             alert(`Test submitted! Your final score is ${score}/${totalQuestions}.`);
